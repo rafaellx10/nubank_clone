@@ -11,9 +11,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
+    return Scaffold(backgroundColor: backgroundColor, appBar: _appBar());
+  }
+
+  PreferredSize _appBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(60.0),
+      child: AppBar(
         backgroundColor: backgroundColor,
         title: const Text(
           'Nubank Clone',
