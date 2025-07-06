@@ -18,9 +18,21 @@ class _HeaderState extends State<Header> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('teste1'), Text('teste2')],
+            children: [Text('teste1'), _profileImage()],
           ),
         ],
+      ),
+    );
+  }
+
+  _profileImage() {
+    return GestureDetector(
+      onTap: () => print('Profile tapped'),
+      child: Container(
+        child: IconButton(
+          icon: const Icon(Icons.person),
+          onPressed: () => print('onPressed: Profile tapped'),
+        ),
       ),
     );
   }
