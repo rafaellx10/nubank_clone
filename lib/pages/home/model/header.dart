@@ -13,7 +13,15 @@ class _HeaderState extends State<Header> {
   Widget build(BuildContext context) {
     return Container(
       color: backgroundColor,
-      child: Column(children: [Text("Data")]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text('teste1'), Text('teste2')],
+          ),
+        ],
+      ),
     );
   }
 }
