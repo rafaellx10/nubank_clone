@@ -28,13 +28,13 @@ class _HomePageState extends State<HomePage> {
 
   PreferredSize _appBar() {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(60.0),
+      preferredSize: const Size.fromHeight(0.0),
       child: AppBar(
         backgroundColor: backgroundColor,
-        title: const Text(
-          'Nubank Clone',
-          style: TextStyle(color: Colors.white),
-        ),
+        // title: const Text(
+        //   'Nubank Clone',
+        //   style: TextStyle(color: Colors.white),
+        // ),
         centerTitle: true,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
