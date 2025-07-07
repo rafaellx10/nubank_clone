@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nubank_clone/pages/account/account.dart';
 import 'package:nubank_clone/pages/home/model/header.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
@@ -17,7 +18,10 @@ class _HomePageState extends State<HomePage> {
       // backgroundColor: backgroundColor,
       appBar: _appBar(),
       body: SingleChildScrollView(
-        child: Container(color: Colors.white, child: Header()),
+        child: Container(
+          color: Colors.white,
+          child: Column(children: const [Header(), AccountNubank()]),
+        ),
       ),
     );
   }
