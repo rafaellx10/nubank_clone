@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class Header extends StatefulWidget {
@@ -29,8 +30,13 @@ class _HeaderState extends State<Header> {
     return GestureDetector(
       onTap: () => print('Profile tapped'),
       child: Container(
+        margin: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: secondaryPurple,
+          borderRadius: BorderRadius.circular(50.0),
+        ),
         child: IconButton(
-          icon: const Icon(Icons.person),
+          icon: Icon(MdiIcons.accountOutline, color: Colors.white, size: 30.0),
           onPressed: () => print('onPressed: Profile tapped'),
         ),
       ),
