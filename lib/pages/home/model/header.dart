@@ -19,8 +19,10 @@ class _HeaderState extends State<Header> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('teste1'), _profileImage()],
+            children: [_profileImage(), _options()],
           ),
+          const SizedBox(height: 10.0),
+          _welcomeMessage(),
         ],
       ),
     );
@@ -38,6 +40,47 @@ class _HeaderState extends State<Header> {
         child: IconButton(
           icon: Icon(MdiIcons.accountOutline, color: Colors.white, size: 30.0),
           onPressed: () => print('onPressed: Profile tapped'),
+        ),
+      ),
+    );
+  }
+
+  _options() {
+    return Row(
+      children: [
+        IconButton(
+          icon: Icon(MdiIcons.eyeOutline, color: Colors.white, size: 30.0),
+          onPressed: () => print('eye icon tapped'),
+        ),
+        IconButton(
+          icon: Icon(
+            MdiIcons.helpCircleOutline,
+            color: Colors.white,
+            size: 30.0,
+          ),
+          onPressed: () => print('Help tapped'),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.person_add_alt_1_outlined,
+            color: Colors.white,
+            size: 30.0,
+          ),
+          onPressed: () => print('Settings tapped'),
+        ),
+      ],
+    );
+  }
+
+  _welcomeMessage() {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: Text(
+        'Welcome to Nubank Clone',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
