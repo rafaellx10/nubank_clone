@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:nubank_clone/controllers/controller_home_page.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class Header extends StatefulWidget {
@@ -48,9 +50,20 @@ class _HeaderState extends State<Header> {
   _options() {
     return Row(
       children: [
-        IconButton(
-          icon: Icon(MdiIcons.eyeOutline, color: Colors.white, size: 30.0),
-          onPressed: () => print('eye icon tapped'),
+        GetBuilder<ControllerHomePage>(
+          init: ControllerHomePage(),
+          builder: (controllerHomePage) {
+            return IconButton(
+              icon: Icon(
+                controllerHomePage.eyeValue
+                    ? MdiIcons.eyeOutline
+                    : MdiIcons.eyeOffOutline,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              onPressed: () => controllerHomePage.toggleEyeValue(),
+            );
+          },
         ),
         IconButton(
           icon: Icon(
