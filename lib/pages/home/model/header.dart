@@ -34,7 +34,7 @@ class _HeaderState extends State<Header> {
     return GestureDetector(
       onTap: () => print('Profile tapped'),
       child: Container(
-        margin: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: secondaryPurple,
           borderRadius: BorderRadius.circular(50.0),
@@ -87,7 +87,7 @@ class _HeaderState extends State<Header> {
 
   _welcomeMessage() {
     return Container(
-      margin: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Text(
         'Welcome to Nubank Clone',
         style: TextStyle(
