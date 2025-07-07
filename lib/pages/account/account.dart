@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:nubank_clone/controllers/controller_home_page.dart';
 
 class AccountNubank extends StatefulWidget {
   const AccountNubank({super.key});
@@ -33,13 +35,18 @@ class _AccountNubankState extends State<AccountNubank> {
   }
 
   _moneyAccount() {
-    return Text(
-      'R\$ 872.322,20',
-      style: TextStyle(
-        fontSize: 30.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.deepPurple,
-      ),
+    return GetBuilder<ControllerHomePage>(
+      init: ControllerHomePage(),
+      builder: (controller) {
+        return Text(
+          controller.saldo,
+          style: TextStyle(
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.deepPurple,
+          ),
+        );
+      },
     );
   }
 }
