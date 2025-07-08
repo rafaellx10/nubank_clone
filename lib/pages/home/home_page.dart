@@ -4,6 +4,7 @@ import 'package:nubank_clone/pages/home/account/account.dart';
 import 'package:nubank_clone/pages/home/actions/menu_itens.dart';
 import 'package:nubank_clone/pages/home/creditCard/my_credit_card.dart';
 import 'package:nubank_clone/pages/home/model/header.dart';
+import 'package:nubank_clone/pages/home/notification/notification.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
               Divider(thickness: 1.2),
               MyCreditCard(),
               Divider(thickness: 1.2),
+              Notifications(),
             ],
           ),
         ),
