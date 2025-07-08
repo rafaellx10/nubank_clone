@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:nubank_clone/controllers/controller_home_page.dart';
 
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
@@ -9,14 +11,16 @@ class CreditCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       child: Wrap(
+        direction: Axis.vertical,
         crossAxisAlignment: WrapCrossAlignment.start,
         runSpacing: 10.0,
         spacing: 10.0,
         children: [
           _iconCreditCard(),
           _textCreditCard(),
-          _invoiceText(),
           _invoiceValue(),
+          _limitAvaliable(),
+          _installments(),
         ],
       ),
     );
@@ -43,25 +47,60 @@ class CreditCard extends StatelessWidget {
     );
   }
 
-  _invoiceText() {
-    return Row(
+  _invoiceValue() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Fatura atual',
-          style: TextStyle(fontSize: 18.0, color: Colors.grey),
+          style: TextStyle(fontSize: 16.0, color: Colors.grey),
+        ),
+        SizedBox(height: 4.0),
+        GetBuilder<ControllerHomePage>(
+          init: ControllerHomePage(),
+          builder: (controllerHomePage) {
+            return Text(
+              controllerHomePage.creditCard,
+              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+            );
+          },
         ),
       ],
     );
   }
 
-  _invoiceValue() {
-    return Row(
-      children: [
-        Text(
-          '5000',
-          style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+  _limitAvaliable() {
+    return GetBuilder<ControllerHomePage>(
+      init: ControllerHomePage(),
+      builder: (controllerHomePage) {
+        return Text(
+          'Limite disponível: ${controllerHomePage.limitCard}',
+          style: TextStyle(fontSize: 16.0, color: Colors.grey),
+        );
+      },
+    );
+  }
+
+  _installments() {
+    return Container(
+      margin: EdgeInsets.only(top: 4.0, bottom: 16.0),
+      padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 6.0),
+        child: const Text(
+          'Parcelar compras',
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ],
+      ),
     );
   }
 }
