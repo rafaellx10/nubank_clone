@@ -30,41 +30,6 @@ class Notifications extends StatelessWidget {
     );
   }
 
-  _income() {
-    return Container(
-      margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-      padding: const EdgeInsets.all(24.0),
-      constraints: BoxConstraints(
-        // Exemplo: Largura máxima de 600 pixels
-        maxWidth: 300.0,
-        // Se quiser uma altura máxima também:
-        // maxHeight: 200.0,
-      ),
-
-      decoration: BoxDecoration(
-        color: greyColor,
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-
-      child: RichText(
-        text: TextSpan(
-          style: const TextStyle(fontSize: 14.0, color: Colors.black),
-          children: [
-            const TextSpan(text: 'Seu  '),
-            TextSpan(
-              text: 'Informe de Rendimentos',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.purple,
-              ),
-            ),
-            const TextSpan(text: ' de 2025 já está disponível.'),
-          ],
-        ),
-      ),
-    );
-  }
-
   _itemNotification(String firstText, String highlightText, String lastText) {
     return Container(
       margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
