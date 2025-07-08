@@ -36,7 +36,7 @@ class _MenuItensState extends State<MenuItens> {
   _itemMenu({required IconData icon, required String name, bool? isFirst}) {
     return Container(
       padding:
-          isFirst != null && isFirst == true
+          (isFirst ?? false)
               ? const EdgeInsets.only(right: 7, left: 20)
               : EdgeInsets.symmetric(horizontal: 7),
       child: Column(
