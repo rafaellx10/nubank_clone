@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nubank_clone/pages/account/account.dart';
 import 'package:nubank_clone/pages/actions/menu_itens.dart';
+import 'package:nubank_clone/pages/creditCard/my_credit_card.dart';
 import 'package:nubank_clone/pages/home/model/header.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
@@ -22,7 +23,14 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           color: Colors.white,
           child: Column(
-            children: const [Header(), AccountNubank(), MenuItens()],
+            children: const [
+              Header(),
+              AccountNubank(),
+              MenuItens(),
+              Divider(thickness: 1.2),
+              MyCreditCard(),
+              Divider(thickness: 1.2),
+            ],
           ),
         ),
       ),
