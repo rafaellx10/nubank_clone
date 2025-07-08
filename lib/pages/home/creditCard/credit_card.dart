@@ -12,7 +12,12 @@ class CreditCard extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.start,
         runSpacing: 10.0,
         spacing: 10.0,
-        children: [_iconCreditCard(), _textCreditCard()],
+        children: [
+          _iconCreditCard(),
+          _textCreditCard(),
+          _invoiceText(),
+          _invoiceValue(),
+        ],
       ),
     );
   }
@@ -34,6 +39,28 @@ class CreditCard extends StatelessWidget {
           ),
         ),
         Icon(Icons.chevron_right, color: Colors.grey[600]),
+      ],
+    );
+  }
+
+  _invoiceText() {
+    return Row(
+      children: [
+        Text(
+          'Fatura atual',
+          style: TextStyle(fontSize: 18.0, color: Colors.grey),
+        ),
+      ],
+    );
+  }
+
+  _invoiceValue() {
+    return Row(
+      children: [
+        Text(
+          '5000',
+          style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
