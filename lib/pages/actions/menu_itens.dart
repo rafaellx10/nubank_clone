@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class MenuItens extends StatefulWidget {
@@ -22,13 +23,14 @@ class _MenuItensState extends State<MenuItens> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
+                  padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: greyColor,
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                   child: IconButton(
-                    icon: const Icon(
-                      Icons.monetization_on_outlined,
+                    icon: Icon(
+                      MdiIcons.creditCard,
                       color: Colors.black,
                       size: 30.0,
                     ),
