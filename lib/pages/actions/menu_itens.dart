@@ -16,14 +16,29 @@ class _MenuItensState extends State<MenuItens> {
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Wrap(direction: Axis.horizontal, children: [_itemMenu()]),
+        child: Wrap(
+          direction: Axis.horizontal,
+          children: [
+            _itemMenu(icon: MdiIcons.clover, name: 'Área Pix', isFirst: true),
+            _itemMenu(icon: MdiIcons.barcode, name: 'Pagar'),
+            _itemMenu(icon: MdiIcons.cash, name: 'Transferir'),
+            _itemMenu(icon: MdiIcons.cash, name: 'Depositar'),
+            _itemMenu(icon: MdiIcons.creditCard, name: 'Recarga'),
+            _itemMenu(icon: MdiIcons.account, name: 'Cobrar'),
+            _itemMenu(icon: MdiIcons.chartBar, name: 'Investir'),
+            _itemMenu(icon: MdiIcons.heartOutline, name: 'Doação'),
+          ],
+        ),
       ),
     );
   }
 
-  _itemMenu() {
+  _itemMenu({required IconData icon, required String name, bool? isFirst}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 7),
+      padding:
+          isFirst != null && isFirst == true
+              ? const EdgeInsets.only(right: 7, left: 20)
+              : EdgeInsets.symmetric(horizontal: 7),
       child: Column(
         children: [
           Container(
@@ -34,12 +49,12 @@ class _MenuItensState extends State<MenuItens> {
               borderRadius: BorderRadius.circular(50.0),
             ),
             child: IconButton(
-              icon: Icon(MdiIcons.creditCard, color: Colors.black, size: 30.0),
+              icon: Icon(icon, color: Colors.black, size: 30.0),
               onPressed: () => print('onPressed: Transferir'),
             ),
           ),
           Text(
-            'Transferir',
+            name,
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
         ],
