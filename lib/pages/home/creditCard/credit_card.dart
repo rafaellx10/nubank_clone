@@ -8,19 +8,17 @@ class CreditCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.start,
+        runSpacing: 10.0,
+        spacing: 10.0,
         children: [_iconCreditCard(), _textCreditCard()],
       ),
     );
   }
 
   _iconCreditCard() {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Icon(MdiIcons.creditCard, color: Colors.black, size: 30.0),
-    );
+    return Icon(MdiIcons.creditCard, color: Colors.black, size: 30.0);
   }
 
   _textCreditCard() {
