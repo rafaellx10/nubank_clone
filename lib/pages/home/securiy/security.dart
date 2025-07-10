@@ -9,8 +9,10 @@ class SecurityLife extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Wrap(
+        direction: Axis.vertical,
+        spacing: 12.0,
+        crossAxisAlignment: WrapCrossAlignment.start,
         children: [
           Text(
             'Seguros',
@@ -24,19 +26,20 @@ class SecurityLife extends StatelessWidget {
             'Proteção para você cuidar do que importa',
             style: TextStyle(fontSize: 16.0, color: Colors.grey),
           ),
-          _securityButton(),
+          _securityButton(context),
         ],
       ),
     );
   }
 
-  _securityButton() {
+  _securityButton(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width - 32,
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(20.0),
       ),
-      margin: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+      margin: const EdgeInsets.only(bottom: 12.0),
       padding: const EdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
