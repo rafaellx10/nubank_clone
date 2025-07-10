@@ -8,6 +8,7 @@ import 'package:nubank_clone/pages/home/investments/investments.dart';
 import 'package:nubank_clone/pages/home/model/header.dart';
 import 'package:nubank_clone/pages/home/notification/notification.dart';
 import 'package:nubank_clone/pages/home/securiy/security.dart';
+import 'package:nubank_clone/pages/home/shopping/shopping_view.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,8 +43,10 @@ class _HomePageState extends State<HomePage> {
               Divider(thickness: 1.2),
               Investments(),
               Divider(thickness: 1.2),
-
               SecurityLife(),
+              Divider(thickness: 1.2),
+              ShoppingView(),
+              Divider(thickness: 1.2),
             ],
           ),
         ),
