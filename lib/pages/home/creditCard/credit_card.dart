@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:nubank_clone/controllers/controller_home_page.dart';
+import 'package:nubank_clone/pages/cards/cards_page.dart';
 
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
@@ -17,10 +18,10 @@ class CreditCard extends StatelessWidget {
         spacing: 10.0,
         children: [
           _iconCreditCard(),
-          _textCreditCard(),
+          _textCreditCard(context),
           _invoiceValue(),
           _limitAvaliable(),
-          _installments(),
+          _installments(context),
         ],
       ),
     );
@@ -30,20 +31,28 @@ class CreditCard extends StatelessWidget {
     return Icon(MdiIcons.creditCard, color: Colors.black, size: 30.0);
   }
 
-  _textCreditCard() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'Meus Cartões',
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+  Widget _textCreditCard(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('Abrindo Meus Cartoes');
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const CardsPage()),
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Meus Cartões',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
-        ),
-        Icon(Icons.chevron_right, color: Colors.grey[600]),
-      ],
+          Icon(Icons.chevron_right, color: Colors.grey[600]),
+        ],
+      ),
     );
   }
 
@@ -104,22 +113,30 @@ class CreditCard extends StatelessWidget {
     );
   }
 
-  _installments() {
-    return Container(
-      margin: EdgeInsets.only(top: 4.0, bottom: 16.0),
-      padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(20.0),
-      ),
+  Widget _installments(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('Abrindo Meus Cartoes para parcelamento');
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const CardsPage()),
+        );
+      },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6.0),
-        child: const Text(
-          'Parcelar compras',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
+        margin: const EdgeInsets.only(top: 4.0, bottom: 16.0),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 6.0),
+          child: const Text(
+            'Parcelar compras',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

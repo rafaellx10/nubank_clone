@@ -6,6 +6,9 @@ class ControllerHomePage extends GetxController {
   String saldo = 'R\$ 862.322,20';
   String creditCard = 'R\$ 25.000,00';
   String limitCard = 'R\$ 80.000,00';
+  int invoiceDueInDays = 8;
+  bool isPhysicalCardBlocked = false;
+  bool isVirtualCardEnabled = true;
   bool eyeValue = true;
   final Random _random = Random();
 
@@ -24,7 +27,28 @@ class ControllerHomePage extends GetxController {
     saldo = _formatCurrencyFromCents(saldoCents);
     creditCard = _formatCurrencyFromCents(creditCents);
     limitCard = _formatCurrencyFromCents(limitCents);
+    invoiceDueInDays = 1 + _random.nextInt(12);
 
+    update();
+  }
+
+  void togglePhysicalCardLock() {
+    isPhysicalCardBlocked = !isPhysicalCardBlocked;
+    update();
+  }
+
+  void toggleVirtualCard() {
+    isVirtualCardEnabled = !isVirtualCardEnabled;
+    update();
+  }
+
+  void adjustLimitRandomly() {
+    final currentInvoiceCents = _currencyToCents(creditCard);
+    final newLimitCents = _randomCents(
+      min: currentInvoiceCents + 2500000,
+      max: currentInvoiceCents + 18000000,
+    );
+    limitCard = _formatCurrencyFromCents(newLimitCents);
     update();
   }
 
@@ -47,5 +71,15 @@ class ControllerHomePage extends GetxController {
     }
 
     return 'R\$ ${buffer.toString()},$decimal';
+  }
+
+  int _currencyToCents(String value) {
+    final normalized = value
+        .replaceAll('R\$', '')
+        .replaceAll(' ', '')
+        .replaceAll('.', '')
+        .replaceAll(',', '.');
+    final parsed = double.tryParse(normalized) ?? 0;
+    return (parsed * 100).round();
   }
 }

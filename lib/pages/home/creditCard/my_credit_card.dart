@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:nubank_clone/pages/cards/cards_page.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class MyCreditCard extends StatefulWidget {
@@ -18,7 +19,12 @@ class _MyCreditCardState extends State<MyCreditCard> {
       onTapDown: (_) => setState(() => _pressed = true),
       onTapCancel: () => setState(() => _pressed = false),
       onTapUp: (_) => setState(() => _pressed = false),
-      onTap: () => print('Meus Cartoes tapped'),
+      onTap: () {
+        print('Meus Cartoes tapped');
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const CardsPage()),
+        );
+      },
       child: AnimatedScale(
         scale: _pressed ? 0.96 : 1,
         duration: const Duration(milliseconds: 150),

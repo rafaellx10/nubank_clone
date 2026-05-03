@@ -31,4 +31,15 @@ void main() {
     expect(find.text('Ações Pix'), findsOneWidget);
     expect(find.text('Transferir'), findsOneWidget);
   });
+
+  testWidgets('Opens Meus Cartoes page from home card', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Meus Cartões').first);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Meus Cartões'), findsWidgets);
+    expect(find.textContaining('Vencimento em'), findsOneWidget);
+  });
 }
