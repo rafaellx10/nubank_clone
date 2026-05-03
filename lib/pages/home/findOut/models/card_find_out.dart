@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class CardFindOut extends StatelessWidget {
-  String imagem;
-  String title;
-  String description;
-  String buttonText;
+  final String imagem;
+  final String title;
+  final String description;
+  final String buttonText;
 
-  CardFindOut({
-    Key? key,
+  const CardFindOut({
+    super.key,
     required this.imagem,
     required this.title,
     required this.description,
     required this.buttonText,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

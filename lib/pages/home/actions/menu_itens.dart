@@ -33,7 +33,7 @@ class _MenuItensState extends State<MenuItens> {
     );
   }
 
-  _itemMenu({required IconData icon, required String name, bool? isFirst}) {
+  Widget _itemMenu({required IconData icon, required String name, bool? isFirst}) {
     return Container(
       padding:
           (isFirst ?? false)
@@ -50,12 +50,12 @@ class _MenuItensState extends State<MenuItens> {
             ),
             child: IconButton(
               icon: Icon(icon, color: Colors.black, size: 30.0),
-              onPressed: () => print('onPressed: Transferir'),
+              onPressed: () => print('onPressed: $name'),
             ),
           ),
           Text(
             name,
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
         ],
       ),

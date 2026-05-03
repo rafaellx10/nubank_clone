@@ -12,7 +12,7 @@ class FindOut extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Descubra mais',
             style: TextStyle(
               fontSize: 20.0,
@@ -27,20 +27,19 @@ class FindOut extends StatelessWidget {
     );
   }
 
-  _findOutCards() {
+  Widget _findOutCards() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          CardFindOut(
+          const CardFindOut(
             imagem: 'assets/image/logo-nubank.jpg',
             title: 'Nubank',
-            description:
-                'Conheça o Nubank e tudo \nque ele pode fazer por você.',
+            description: 'Conheca o Nubank e tudo \nque ele pode fazer por voce.',
             buttonText: 'Conhecer',
           ),
           const SizedBox(width: 16.0),
-          CardFindOut(
+          const CardFindOut(
             imagem: 'assets/image/indique-amigos.jpg',
             title: 'Indique amigos',
             description: 'Indique amigos e ganhe \nrecompensas exclusivas.',

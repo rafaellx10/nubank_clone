@@ -30,7 +30,7 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  _profileImage() {
+  Widget _profileImage() {
     return GestureDetector(
       onTap: () => print('Profile tapped'),
       child: Container(
@@ -47,7 +47,7 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  _options() {
+  Widget _options() {
     return Row(
       children: [
         GetBuilder<ControllerHomePage>(
@@ -85,10 +85,10 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  _welcomeMessage() {
+  Widget _welcomeMessage() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      child: Text(
+      child: const Text(
         'Welcome to Nubank Clone',
         style: TextStyle(
           color: Colors.white,

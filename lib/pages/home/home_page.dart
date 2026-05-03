@@ -4,7 +4,7 @@ import 'package:nubank_clone/pages/home/account/account.dart';
 import 'package:nubank_clone/pages/home/actions/menu_itens.dart';
 import 'package:nubank_clone/pages/home/creditCard/credit_card.dart';
 import 'package:nubank_clone/pages/home/creditCard/my_credit_card.dart';
-import 'package:nubank_clone/pages/home/findOut/finfOut.dart';
+import 'package:nubank_clone/pages/home/findOut/find_out.dart';
 import 'package:nubank_clone/pages/home/investments/investments.dart';
 import 'package:nubank_clone/pages/home/model/header.dart';
 import 'package:nubank_clone/pages/home/notification/notification.dart';
