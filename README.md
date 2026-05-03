@@ -1,50 +1,59 @@
 # Nubank Clone
 
-A Flutter implementation cloning Nubank's mobile app interface and features.
+A Flutter UI clone inspired by Nubank app sections.
 
-## Features
+## Requirements
 
-- Home page interface similar to Nubank
-- Material Design with Nubank's purple color scheme
-- Responsive layout for multiple platforms (Android, iOS, Web)
+- Flutter stable (project tested with Flutter 3.32.4)
+- Dart SDK compatible with `pubspec.yaml` (`^3.7.0`)
 
-## Screenshots
+## Setup
 
-_Screenshots will be added here_
-
-## Installation
-
-1. Ensure you have Flutter SDK installed. If not, follow the [official installation guide](https://flutter.dev/docs/get-started/install).
-2. Clone this repository:
+1. Install Flutter and verify your environment:
    ```bash
-   git clone https://github.com/your-username/nubank_clone.git
+   flutter doctor -v
    ```
-3. Navigate to the project directory:
-   ```bash
-   cd nubank_clone
-   ```
-4. Install dependencies:
+2. Install dependencies:
    ```bash
    flutter pub get
    ```
+3. If Android licenses are pending:
+   ```bash
+   flutter doctor --android-licenses
+   ```
 
-## Running the App
+## Run
 
 ```bash
 flutter run
 ```
 
-## Dependencies
+Common targets:
 
-- [Flutter SDK](https://flutter.dev) (^3.7.0)
-- [cupertino_icons](https://pub.dev/packages/cupertino_icons) (^1.0.8)
-- [flutter_lints](https://pub.dev/packages/flutter_lints) (^5.0.0)
+- Web: `flutter run -d chrome`
+- macOS: `flutter run -d macos`
+
+## Validation
+
+Run before opening PR or finalizing changes:
+
+```bash
+flutter analyze
+flutter test
+```
+
+## OpenCode Workflow
+
+This repository includes `AGENTS.md` with instructions for coding agents.
+
+- Project stack and main paths
+- Setup commands
+- Required validation workflow
+- Code conventions
 
 ## Project Structure
 
-Key files and directories:
-
-- `lib/main.dart` - Application entry point
-- `lib/pages/home_page.dart` - Main home screen implementation
-- `lib/utils/colors_standarts.dart` - Color definitions
-- `pubspec.yaml` - Project metadata and dependencies
+- `lib/main.dart` - app entry point
+- `lib/pages/home/home_page.dart` - main home screen
+- `lib/controllers/controller_home_page.dart` - home state controller
+- `lib/utils/colors_standarts.dart` - color palette
