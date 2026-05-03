@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:nubank_clone/pages/pix/pix_page.dart';
 import 'package:nubank_clone/utils/colors_standarts.dart';
 
 class MenuItens extends StatefulWidget {
@@ -43,7 +44,7 @@ class _MenuItensState extends State<MenuItens> {
         children: [
           _PressableMenuIcon(
             margin: const EdgeInsets.only(bottom: 10.0),
-            onPressed: () => print('onPressed: $name'),
+            onPressed: () => _handleMenuTap(name),
             child: Icon(icon, color: Colors.black, size: 30.0),
           ),
           Text(
@@ -53,6 +54,17 @@ class _MenuItensState extends State<MenuItens> {
         ],
       ),
     );
+  }
+
+  void _handleMenuTap(String name) {
+    if (name == 'Área Pix') {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const PixPage()),
+      );
+      return;
+    }
+
+    print('onPressed: $name');
   }
 }
 
