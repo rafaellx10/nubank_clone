@@ -22,17 +22,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ControllerHomePage get _controller {
-    if (Get.isRegistered<ControllerHomePage>()) {
-      return Get.find<ControllerHomePage>();
-    }
-    return Get.put(ControllerHomePage());
-  }
+  late final ControllerHomePage _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller;
+    _controller = Get.put(ControllerHomePage());
   }
 
   Future<void> _onRefresh() async {
