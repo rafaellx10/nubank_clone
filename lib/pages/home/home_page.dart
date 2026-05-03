@@ -22,12 +22,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final ControllerHomePage _controller;
+  ControllerHomePage get _controller {
+    if (Get.isRegistered<ControllerHomePage>()) {
+      return Get.find<ControllerHomePage>();
+    }
+    return Get.put(ControllerHomePage());
+  }
 
   @override
   void initState() {
     super.initState();
-    _controller = Get.put(ControllerHomePage());
+    _controller;
   }
 
   Future<void> _onRefresh() async {
@@ -57,19 +62,28 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: _appBar(),
-      body: RefreshIndicator(
-        onRefresh: _onRefresh,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                sections.length,
-                (index) => _AnimatedHomeSection(index: index, child: sections[index]),
+      body: ColoredBox(
+        color: backgroundColor,
+        child: RefreshIndicator(
+          onRefresh: _onRefresh,
+          displacement: 32,
+          strokeWidth: 3,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(
+                  sections.length,
+                  (index) => _AnimatedHomeSection(
+                    index: index,
+                    child: sections[index],
+                  ),
+                ),
               ),
             ),
           ),
@@ -121,7 +135,8 @@ class _AnimatedHomeSectionState extends State<_AnimatedHomeSection> {
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    final reduceMotion =
+        MediaQuery.maybeOf(context)?.disableAnimations ?? false;
     final visible = reduceMotion ? true : _visible;
 
     return AnimatedOpacity(
