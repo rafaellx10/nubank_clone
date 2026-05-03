@@ -22,10 +22,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final ControllerHomePage _controller;
+
   @override
   void initState() {
     super.initState();
-    Get.put(ControllerHomePage());
+    _controller = Get.put(ControllerHomePage());
+  }
+
+  Future<void> _onRefresh() async {
+    await _controller.refreshData();
   }
 
   @override
@@ -52,15 +58,19 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: _appBar(),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              sections.length,
-              (index) => _AnimatedHomeSection(index: index, child: sections[index]),
+      body: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                sections.length,
+                (index) => _AnimatedHomeSection(index: index, child: sections[index]),
+              ),
             ),
           ),
         ),
