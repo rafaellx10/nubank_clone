@@ -41,23 +41,67 @@ class _MenuItensState extends State<MenuItens> {
               : EdgeInsets.symmetric(horizontal: 7),
       child: Column(
         children: [
-          Container(
+          _PressableMenuIcon(
             margin: const EdgeInsets.only(bottom: 10.0),
-            padding: const EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              color: greyColor,
-              borderRadius: BorderRadius.circular(50.0),
-            ),
-            child: IconButton(
-              icon: Icon(icon, color: Colors.black, size: 30.0),
-              onPressed: () => print('onPressed: $name'),
-            ),
+            onPressed: () => print('onPressed: $name'),
+            child: Icon(icon, color: Colors.black, size: 30.0),
           ),
           Text(
             name,
             style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PressableMenuIcon extends StatefulWidget {
+  const _PressableMenuIcon({
+    required this.child,
+    required this.onPressed,
+    required this.margin,
+  });
+
+  final Widget child;
+  final VoidCallback onPressed;
+  final EdgeInsets margin;
+
+  @override
+  State<_PressableMenuIcon> createState() => _PressableMenuIconState();
+}
+
+class _PressableMenuIconState extends State<_PressableMenuIcon> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedScale(
+        scale: _pressed ? 0.85 : 1,
+        duration: const Duration(milliseconds: 140),
+        curve: Curves.easeOutBack,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 170),
+          margin: widget.margin,
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: greyColor,
+            borderRadius: BorderRadius.circular(50.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: _pressed ? 0.24 : 0.08),
+                blurRadius: _pressed ? 16 : 6,
+                offset: Offset(0, _pressed ? 8 : 3),
+              ),
+            ],
+          ),
+          child: widget.child,
+        ),
       ),
     );
   }

@@ -39,7 +39,7 @@ class _HeaderState extends State<Header> {
           color: secondaryPurple,
           borderRadius: BorderRadius.circular(50.0),
         ),
-        child: IconButton(
+        child: _PressableIcon(
           icon: Icon(MdiIcons.accountOutline, color: Colors.white, size: 30.0),
           onPressed: () => print('onPressed: Profile tapped'),
         ),
@@ -51,9 +51,8 @@ class _HeaderState extends State<Header> {
     return Row(
       children: [
         GetBuilder<ControllerHomePage>(
-          init: ControllerHomePage(),
           builder: (controllerHomePage) {
-            return IconButton(
+            return _PressableIcon(
               icon: Icon(
                 controllerHomePage.eyeValue
                     ? MdiIcons.eyeOutline
@@ -65,7 +64,7 @@ class _HeaderState extends State<Header> {
             );
           },
         ),
-        IconButton(
+        _PressableIcon(
           icon: Icon(
             MdiIcons.helpCircleOutline,
             color: Colors.white,
@@ -73,7 +72,7 @@ class _HeaderState extends State<Header> {
           ),
           onPressed: () => print('Help tapped'),
         ),
-        IconButton(
+        _PressableIcon(
           icon: Icon(
             Icons.person_add_alt_1_outlined,
             color: Colors.white,
@@ -94,6 +93,43 @@ class _HeaderState extends State<Header> {
           color: Colors.white,
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+class _PressableIcon extends StatefulWidget {
+  const _PressableIcon({required this.icon, required this.onPressed});
+
+  final Widget icon;
+  final VoidCallback onPressed;
+
+  @override
+  State<_PressableIcon> createState() => _PressableIconState();
+}
+
+class _PressableIconState extends State<_PressableIcon> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedScale(
+        scale: _pressed ? 0.82 : 1,
+        duration: const Duration(milliseconds: 140),
+        curve: Curves.easeOutBack,
+        child: AnimatedRotation(
+          turns: _pressed ? -0.02 : 0,
+          duration: const Duration(milliseconds: 140),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: widget.icon,
+          ),
         ),
       ),
     );

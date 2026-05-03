@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:nubank_clone/controllers/controller_home_page.dart';
 import 'package:nubank_clone/pages/home/account/account.dart';
 import 'package:nubank_clone/pages/home/actions/menu_itens.dart';
 import 'package:nubank_clone/pages/home/creditCard/credit_card.dart';
@@ -21,9 +23,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    Get.put(ControllerHomePage());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final sections = <Widget>[
+      const Header(),
+      const AccountNubank(),
+      const MenuItens(),
+      const Divider(thickness: 1.2),
+      const MyCreditCard(),
+      const Divider(thickness: 1.2),
+      const Notifications(),
+      const Divider(thickness: 1.2),
+      const CreditCard(),
+      const Divider(thickness: 1.2),
+      const Investments(),
+      const Divider(thickness: 1.2),
+      const SecurityLife(),
+      const Divider(thickness: 1.2),
+      const ShoppingView(),
+      const Divider(thickness: 1.2),
+      const FindOut(),
+    ];
+
     return Scaffold(
-      // backgroundColor: backgroundColor,
       appBar: _appBar(),
       body: SingleChildScrollView(
         child: Container(
@@ -31,25 +58,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Header(),
-              AccountNubank(),
-              MenuItens(),
-              Divider(thickness: 1.2),
-              MyCreditCard(),
-              Divider(thickness: 1.2),
-              Notifications(),
-              Divider(thickness: 1.2),
-              CreditCard(),
-              Divider(thickness: 1.2),
-              Investments(),
-              Divider(thickness: 1.2),
-              SecurityLife(),
-              Divider(thickness: 1.2),
-              ShoppingView(),
-              Divider(thickness: 1.2),
-              FindOut(),
-            ],
+            children: List.generate(
+              sections.length,
+              (index) => _AnimatedHomeSection(index: index, child: sections[index]),
+            ),
           ),
         ),
       ),
@@ -68,6 +80,49 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
+      ),
+    );
+  }
+}
+
+class _AnimatedHomeSection extends StatefulWidget {
+  const _AnimatedHomeSection({required this.index, required this.child});
+
+  final int index;
+  final Widget child;
+
+  @override
+  State<_AnimatedHomeSection> createState() => _AnimatedHomeSectionState();
+}
+
+class _AnimatedHomeSectionState extends State<_AnimatedHomeSection> {
+  bool _visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final delay = Duration(milliseconds: 70 * widget.index);
+    Future<void>.delayed(delay, () {
+      if (mounted) {
+        setState(() => _visible = true);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    final visible = reduceMotion ? true : _visible;
+
+    return AnimatedOpacity(
+      opacity: visible ? 1 : 0,
+      duration: const Duration(milliseconds: 450),
+      curve: Curves.easeOutCubic,
+      child: AnimatedSlide(
+        offset: visible ? Offset.zero : const Offset(0, 0.15),
+        duration: const Duration(milliseconds: 550),
+        curve: Curves.easeOutBack,
+        child: widget.child,
       ),
     );
   }

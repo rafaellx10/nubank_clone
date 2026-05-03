@@ -58,11 +58,22 @@ class CreditCard extends StatelessWidget {
         ),
         SizedBox(height: 4.0),
         GetBuilder<ControllerHomePage>(
-          init: ControllerHomePage(),
           builder: (controllerHomePage) {
-            return Text(
-              controllerHomePage.creditCard,
-              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+            final value =
+                controllerHomePage.eyeValue
+                    ? controllerHomePage.creditCard
+                    : 'R\$ ••••••••';
+
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              child: Text(
+                value,
+                key: ValueKey<String>(value),
+                style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+              ),
             );
           },
         ),
@@ -72,11 +83,22 @@ class CreditCard extends StatelessWidget {
 
   _limitAvaliable() {
     return GetBuilder<ControllerHomePage>(
-      init: ControllerHomePage(),
       builder: (controllerHomePage) {
-        return Text(
-          'Limite disponível: ${controllerHomePage.limitCard}',
-          style: TextStyle(fontSize: 16.0, color: Colors.grey),
+        final value =
+            controllerHomePage.eyeValue
+                ? 'Limite disponível: ${controllerHomePage.limitCard}'
+                : 'Limite disponível: R\$ ••••••••';
+
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: Text(
+            value,
+            key: ValueKey<String>(value),
+            style: const TextStyle(fontSize: 16.0, color: Colors.grey),
+          ),
         );
       },
     );

@@ -36,14 +36,28 @@ class _AccountNubankState extends State<AccountNubank> {
 
   _moneyAccount() {
     return GetBuilder<ControllerHomePage>(
-      init: ControllerHomePage(),
       builder: (controller) {
-        return Text(
-          controller.saldo,
-          style: TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
+        final value = controller.eyeValue ? controller.saldo : 'R\$ ••••••••';
+
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 320),
+          transitionBuilder: (child, animation) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0.08, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: FadeTransition(opacity: animation, child: child),
+            );
+          },
+          child: Text(
+            value,
+            key: ValueKey<String>(value),
+            style: const TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple,
+            ),
           ),
         );
       },

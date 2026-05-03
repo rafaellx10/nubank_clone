@@ -32,20 +32,57 @@ class FindOut extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          const CardFindOut(
-            imagem: 'assets/image/logo-nubank.jpg',
-            title: 'Nubank',
-            description: 'Conheca o Nubank e tudo \nque ele pode fazer por voce.',
-            buttonText: 'Conhecer',
+          const _AnimatedDiscoverCard(
+            card: CardFindOut(
+              imagem: 'assets/image/logo-nubank.jpg',
+              title: 'Nubank',
+              description: 'Conheca o Nubank e tudo \nque ele pode fazer por voce.',
+              buttonText: 'Conhecer',
+            ),
           ),
           const SizedBox(width: 16.0),
-          const CardFindOut(
-            imagem: 'assets/image/indique-amigos.jpg',
-            title: 'Indique amigos',
-            description: 'Indique amigos e ganhe \nrecompensas exclusivas.',
-            buttonText: 'Conhecer',
+          const _AnimatedDiscoverCard(
+            card: CardFindOut(
+              imagem: 'assets/image/indique-amigos.jpg',
+              title: 'Indique amigos',
+              description: 'Indique amigos e ganhe \nrecompensas exclusivas.',
+              buttonText: 'Conhecer',
+            ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _AnimatedDiscoverCard extends StatefulWidget {
+  const _AnimatedDiscoverCard({required this.card});
+
+  final CardFindOut card;
+
+  @override
+  State<_AnimatedDiscoverCard> createState() => _AnimatedDiscoverCardState();
+}
+
+class _AnimatedDiscoverCardState extends State<_AnimatedDiscoverCard> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTap: () => print('Discover card tapped'),
+      child: AnimatedScale(
+        scale: _pressed ? 0.96 : 1,
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeOutBack,
+        child: AnimatedRotation(
+          turns: _pressed ? -0.006 : 0,
+          duration: const Duration(milliseconds: 150),
+          child: widget.card,
+        ),
       ),
     );
   }
